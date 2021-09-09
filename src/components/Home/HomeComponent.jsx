@@ -1,9 +1,18 @@
-const HomeContainer = () => {
+import React from 'react';
+import useExampleHooks from 'src/containers/useExampleHooks';
+
+const HomeComponent = () => {
+  const example = useExampleHooks();
   return (
-    <div>
-      asdf
-    </div>
+    <>
+      <div>
+        { example.value }
+      </div>
+      <div>
+        { example.temp }
+      </div>
+    </>
   );
 };
 
-export default HomeContainer;
+export default HomeComponent;

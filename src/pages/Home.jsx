@@ -1,12 +1,9 @@
 import React from 'react';
+import HomeComponent from '../components/Home/HomeComponent';
 
 const Home = () => {
   return (
-    <>
-      asdf
-      asdf
-      asdf
-    </>
+    <HomeComponent />
   );
 };
 
