@@ -16,8 +16,8 @@ module.exports = {
   rules: {
     // Possible Errors
     'no-cond-assign': ['error', 'always'],
-    'no-console': ['warn'],
-    'no-debugger': ['warn'],
+    'no-console': ['error'],
+    'no-debugger': ['error'],
     'no-constant-condition': ['error', { checkLoops: false }],
     'no-template-curly-in-string': ['error'],
     'no-unsafe-optional-chaining': ['error'],
@@ -94,9 +94,9 @@ module.exports = {
     'max-len': [
       'error',
       {
-        code: 130,
+        code: 140,
         tabWidth: 2,
-        comments: 130,
+        comments: 140,
         ignoreUrls: true,
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
