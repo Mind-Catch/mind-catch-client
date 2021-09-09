@@ -1,10 +1,12 @@
 import React from 'react';
+import * as Page from './pages';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      asdf
-    </div>
+    <Switch>
+      <Route component={Page.home} />
+    </Switch>
   );
 }
 
