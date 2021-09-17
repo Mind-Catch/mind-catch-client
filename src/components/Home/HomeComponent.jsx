@@ -1,18 +1,20 @@
 import React from 'react';
-import useExampleHooks from 'src/containers/useExampleHooks';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const HomeComponent = () => {
-  const example = useExampleHooks();
   return (
-    <>
+    <HomeWrap>
       <div>
-        { example.value }
+        <Link to="/roomList">방 목록</Link>
       </div>
-      <div>
-        { example.temp }
-      </div>
-    </>
+    </HomeWrap>
   );
 };
+
+const HomeWrap = styled.section`
+  width: 1440px;
+  margin: 50px auto;
+`;
 
 export default HomeComponent;
