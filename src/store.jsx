@@ -3,7 +3,7 @@ import {
   combineReducers,
 } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import { example } from 'src/modules';
+import { example } from 'modules';
 
 const rootReducer = combineReducers({ example });
 

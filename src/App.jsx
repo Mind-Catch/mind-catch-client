@@ -5,7 +5,9 @@ import { Switch, Route } from 'react-router-dom';
 function App() {
   return (
     <Switch>
-      <Route component={Page.home} />
+      <Route path="/" component={Page.home} exact />
+      <Route path="/roomList" component={Page.gameList} exact />
+      <Route path="/room/:roomId" component={Page.gameRoom} exact />
     </Switch>
   );
 }

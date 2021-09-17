@@ -1,9 +1,15 @@
 import React from 'react';
-import HomeComponent from '../components/Home/HomeComponent';
+import Header from 'components/Common/Header';
+import HomeComponent from 'components/Home/HomeComponent';
+import Footer from 'components/Common/Footer';
 
 const Home = () => {
   return (
-    <HomeComponent />
+    <>
+      <Header />
+      <HomeComponent />
+      <Footer />
+    </>
   );
 };
 
