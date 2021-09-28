@@ -1,11 +1,10 @@
 import React from 'react';
-import './index.css';
-import { Form, Typography } from 'antd';
-import useExampleHooks from 'src/containers/useExampleHooks';
+import { Typography } from 'antd';
+import useExampleHooks from '../../containers/useExampleHooks';
 import { KAKAO_AUTH_URL } from '../Shared/OAuth';
 import Kakao from '../../img/Kakao.png';
 import Google from '../../img/Google.png';
-
+import styled from 'styled-components';
 const { Title } = Typography;
 
 const HomeComponent = () => {
@@ -21,22 +20,53 @@ const HomeComponent = () => {
       <div>
         { example.temp }
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5rem' }}>
+      <TitleDiv>
         <Title>Mind Catch</Title>
-      </div>
-      <div className="form-wrap">
-        <Form className="loginForm">
+      </TitleDiv>
+      <FormWrap>
+        <LoginForm>
           <h2>Login</h2>
-          <div onClick={() => kakaoLogin()} className="center">
+          <Center onClick={() => kakaoLogin()}>
             <img src={Kakao} alt="" />
-          </div>
-          <div className="center">
+          </Center>
+          <Center>
             <img src={Google} alt="" />
-          </div>
-        </Form>
-      </div>
+          </Center>
+        </LoginForm>
+      </FormWrap>
     </>
   );
 };
+const TitleDiv = styled.div`
+display: flex;
+justify-content: center;
+marginTop: 5rem;
+`;
+
+const FormWrap = styled.div`
+border:3px solid black;
+border-radius: 1em;
+width: 700px;
+height: 700px;
+position: relative;
+margin: 3% auto;
+background: #fafcff;
+padding: 5px;
+`;
+
+
+const Center = styled.div`
+height: 150px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`;
+
+const LoginForm = styled.h2`
+text-align: center;
+margin: 30px;
+`;
+
 
 export default HomeComponent;
