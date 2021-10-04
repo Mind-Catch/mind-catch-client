@@ -1,7 +1,55 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+const BASE_COLOR = 'black';
+
 const GameRoomContent = () => {
+  /* 그림 그리는 기능 */
+  // canvas state
+  const canvasRef = useRef(null);
+  const ctx = useRef(null);
+
+  // 마우스가 캔버스 위에서 눌러지고 있는가?
+  let painting = false;
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      ctx.current = canvasRef.current.getContext('2d');
+      ctx.current.strokeStyle = BASE_COLOR;
+    }
+  }, []);
+
+  const startPainting = () => {
+    painting = true;
+  };
+
+  const stopPainting = () => {
+    painting = false;
+  };
+
+  // 캔버스 위에 선 그려지는 로직
+  const onMouseMove = ({ nativeEvent }) => {
+    // const paintData = [];
+    const x = nativeEvent.offsetX;
+    const y = nativeEvent.offsetY;
+
+    if (!ctx.current) return;
+
+    if (!painting) {
+      ctx.current.beginPath();
+      ctx.current.moveTo(x, y);
+    } else if (painting) {
+      ctx.current.lineTo(x, y);
+      ctx.current.stroke();
+    }
+  };
+
+  // 펜 색상 선택
+  const ColorSelect = ({ nativeEvent }) => {
+    const color = nativeEvent.target.style.backgroundColor;
+    ctx.current.strokeStyle = color;
+  };
+
   return (
     <GameRoomContentWrap>
       <InfoBoxWrap>
@@ -12,17 +60,26 @@ const GameRoomContent = () => {
       </InfoBoxWrap>
       <ContentWrap>
         <CanvasWrap>
-          <canvas></canvas>
+          <canvas
+            ref={canvasRef}
+            width={1030}
+            height={620}
+            onMouseMove={onMouseMove}
+            onMouseDown={startPainting}
+            onMouseUp={stopPainting}
+            onMouseLeave={stopPainting}
+          >
+          </canvas>
           <PaletteWrap>
-            <div className="circle red"></div>
-            <div className="circle orange"></div>
-            <div className="circle yellow"></div>
-            <div className="circle green"></div>
-            <div className="circle blue"></div>
-            <div className="circle teal"></div>
-            <div className="circle purple"></div>
-            <div className="circle black"></div>
-            <div className="circle white"></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#FF3B30' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#FF9500' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#FFCC00' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#4cD963' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#0579FF' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: 'teal' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#8b00ff' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: '#2c2c2c' }}></div>
+            <div className="circle" onClick={ColorSelect} style={{ backgroundColor: 'white' }}></div>
           </PaletteWrap>
         </CanvasWrap>
         <ChatWrap>
@@ -35,7 +92,6 @@ const GameRoomContent = () => {
             <div>김승환6</div>
           </ChatMemberWrap>
           <ChattingWrap>
-            asdf
           </ChattingWrap>
           <ChatSendWrap>
             <input type="text" />
